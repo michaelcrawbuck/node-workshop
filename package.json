@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jest": "^29.5.0",
     "yargs": "^17.7.2"
   }
 }

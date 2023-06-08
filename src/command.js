@@ -19,9 +19,9 @@ yargs(hideBin(process.argv))
     })
   }, async (argv) => {
     try {
-      const tags = argv.tags ? argv.tags.split(",") : [];
-      const note = await newNote(argv.note, tags);
-      console.log("New Note: ", note);
+      const tags = argv.tags ? argv.tags.split(',').map((tag) => tag.trim()) : [];
+      const note = await newNote(argv.note, tags)
+      console.log("New Note:", note);
     } catch (err) {
       return (err);
     }
@@ -45,8 +45,8 @@ yargs(hideBin(process.argv))
       type: 'string'
     })
   }, async (argv) => {
-    const matches = await findNotes(argv.filter);
-    console.log(matches);
+    const notes = await findNotes(argv.filter)
+    console.log(listNotes(notes));
   })
   .command('remove <id>', 'remove a note by id', yargs => {
     return yargs.positional('id', {
